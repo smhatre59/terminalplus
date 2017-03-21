@@ -1,0 +1,7 @@
+.parentContainer{
+    flex:1;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    justify-content: center;
+}
