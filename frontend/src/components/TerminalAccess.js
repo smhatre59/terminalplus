@@ -6,6 +6,8 @@ import './css/TerminalAccess.css';
 import Terminal from 'react-bash';
 import request from'superagent';
 var apiBaseUrl = "http://localhost:5000/api/";
+import Iframe from 'react-iframe';
+
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 const history = [
     { value: 'Type `help` to begin' },
@@ -103,25 +105,42 @@ render(){
             )
             this.setState({commandData:table})
             })
-          return { structure, cwd, history: history.concat({ value: 'Nice try...' }), };;          
+          return { structure, cwd, history: history.concat({ value: 'Nice try...' }), };       
         },   
+    },
+    portainer:{
+        exec: ({ structure, history, cwd },command) => {
+            let fetchData = getData("docker-machine ip manager1",(res) =>{
+                var response = JSON.parse(res.text).result.split("\n")[0];
+                let embedUrl = "http://"+response+":9000/"
+                console.log("embedUrl",embedUrl)
+                let commandData =[];
+                commandData.push(
+                    <div>
+                        <Iframe url={embedUrl} />
+                    </div>
+                )
+                this.setState({commandData})
+            })
+            return { structure, cwd, history: history.concat({ value: 'Nice try...' }), };
+        }
     }
     };
     return(
         <MuiThemeProvider>
             <Tabs>
                  <Tab label="Docker Administration" >
-                 <center>
                  <div className="parentContainer">
+                 <center>
                  <h4>Run docker administration commands here</h4>
                   <div style={{flex:1}}>
                   <Terminal history={history} structure={structure} extensions={extensions} prefix={"user@HOMEPC"}/>  
                   </div>
+                 </center> 
                   <div>
                         {this.state.commandData}
                   </div>    
                  </div>
-                 </center>
              </Tab>
             </Tabs>
         </MuiThemeProvider>

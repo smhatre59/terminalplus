@@ -16,7 +16,6 @@ constructor(props){
     }
 }
 componentDidMount(){
-var self=this;    
 request
   .get(apiBaseUrl+'getAllRecords')
   .set('Accept', 'application/json')

@@ -1,5 +1,4 @@
 let cmd=require('node-cmd');
-let async = require('async');
 
 exports.commandrun = function(req,res){
     console.log("command req",req.body.command);
