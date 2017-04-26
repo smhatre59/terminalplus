@@ -88,7 +88,7 @@ request
         )
         var toolTip=[];
         
-        console.log("counts",studentCount,teachersCount)
+        // console.log("counts",studentCount,teachersCount)
         let data = [{
             name:"teacher",
             count:teachersCount
@@ -97,7 +97,7 @@ request
             count:studentCount
         }]
         let value = function(d){
-            console.log("value",d);
+            // console.log("value",d);
             return d.count;
         }
         let fieldname = function(d){

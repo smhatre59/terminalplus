@@ -49,7 +49,7 @@ class App extends Component {
               <a href="#"><FontIcon
                 className="material-icons drawerclosebutton"
                 color={blue500}
-                styles={{ top:10,}}
+                style={{ top:10}}
                 onClick={(event) => this.toggleDrawer(event)}
               >clear</FontIcon></a>
               </div>
@@ -72,7 +72,7 @@ class App extends Component {
               </div> 
           </Drawer>
         </MuiThemeProvider>
-        <div class="bodyContainer" onClick={(event) => this.setState({draweropen:false})}>
+        <div className="bodyContainer" onClick={(event) => this.setState({draweropen:false})}>
               {routes.map((route, index) => (
                 <Route
                   key={index}
